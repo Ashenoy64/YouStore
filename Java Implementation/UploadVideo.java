@@ -1,11 +1,11 @@
-package com.google.api.services.samples.youtube.cmdline.data;
+package inf_storage.inf_storage;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
 import com.google.api.client.http.InputStreamContent;
-import com.google.api.services.samples.youtube.cmdline.Auth;
+import inf_storage.inf_storage.youtube.cmdline.Auth;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoSnippet;
