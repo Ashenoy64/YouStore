@@ -14,9 +14,9 @@ public class ZipToVideoConverter {
             String userInput = reader.readLine();
 
             if ("1".equals(userInput)) {
-                convertZipToVideo("Upload", "Download");
+                convertZipToVideo("Upload/test.zip", "Download/file.mp4");
             } else if ("2".equals(userInput)) {
-                convertVideoToZip("Download", "Upload");
+                convertVideoToZip("Download/file.mp4", "Upload/testconv.zip");
             } else {
                 System.out.println("Invalid input. Please enter 1 or 2.");
             }
@@ -42,7 +42,7 @@ public class ZipToVideoConverter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    } 
 
     private static void convertVideoToZip(String videoFilePath, String outputZipFilePath) {
         try {
