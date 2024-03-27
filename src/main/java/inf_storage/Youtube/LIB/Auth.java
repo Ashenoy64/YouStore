@@ -26,9 +26,6 @@ public class Auth {
     public static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
     public static final JsonFactory JSON_FACTORY = new JacksonFactory();
 
-    /**
-     * This is the directory that will be used under the user's home directory where OAuth tokens will be stored.
-     */
     private static final String CREDENTIALS_DIRECTORY = ".oauth-credentials";
 
     public static Credential authorize(List<String> scopes, String credentialDatastore) throws IOException {

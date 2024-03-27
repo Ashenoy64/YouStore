@@ -19,13 +19,9 @@ public class Upload {
 
     private static YouTube youtube;
     private static final String VIDEO_FILE_FORMAT = "video/*";
-    private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
 
-    public static void main(String[] args) {
+    public static void __upload(String filePath) {
 
-        // This OAuth 2.0 access scope allows an application to upload files
-        // to the authenticated user's YouTube channel, but doesn't allow
-        // other types of access.
         List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload");
 
         try {
@@ -34,32 +30,25 @@ public class Upload {
 
             // This object is used to make YouTube Data API requests.
             youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName(
-                    "youtube-cmdline-uploadvideo-sample").build();
+                    "youtube-store").build();
 
-            System.out.println("Uploading: " + SAMPLE_VIDEO_FILENAME);
+            System.out.println("Uploading"+filePath);
 
-            // Add extra information to the video before uploading.
             Video videoObjectDefiningMetadata = new Video();
 
             // Set the video to be publicly visible. This is the default
             // setting. Other supporting settings are "unlisted" and "private."
             VideoStatus status = new VideoStatus();
-            status.setPrivacyStatus("public");
+            status.setPrivacyStatus("private");
             videoObjectDefiningMetadata.setStatus(status);
 
-            // Most of the video's metadata is set on the VideoSnippet object.
             VideoSnippet snippet = new VideoSnippet();
 
-            // This code uses a Calendar instance to create a unique name and
-            // description for test purposes so that you can easily upload
-            // multiple files. You should remove this code from your project
-            // and use your own standard names instead.
             Calendar cal = Calendar.getInstance();
             snippet.setTitle("Test Upload via Java on " + cal.getTime());
             snippet.setDescription(
                     "Video uploaded via YouTube Data API V3 using the Java library " + "on " + cal.getTime());
 
-            // Set the keyword tags that you want to associate with the video.
             List<String> tags = new ArrayList<String>();
             tags.add("test");
             tags.add("example");
@@ -69,31 +58,22 @@ public class Upload {
             snippet.setTags(tags);
 
             // Add the completed snippet object to the video resource.
+            System.out.println("Meta Data Done");
             videoObjectDefiningMetadata.setSnippet(snippet);
 
             InputStreamContent mediaContent = new InputStreamContent(VIDEO_FILE_FORMAT,
-                    Upload.class.getResourceAsStream("/sample-video.mp4"));
+                    Upload.class.getResourceAsStream(filePath));
 
-            // Insert the video. The command sends three arguments. The first
-            // specifies which information the API request is setting and which
-            // information the API response should return. The second argument
-            // is the video resource that contains metadata about the new video.
-            // The third argument is the actual video content.
+
             YouTube.Videos.Insert videoInsert = youtube.videos()
                     .insert("snippet,statistics,status", videoObjectDefiningMetadata, mediaContent);
 
-            // Set the upload type and add an event listener.
             MediaHttpUploader uploader = videoInsert.getMediaHttpUploader();
 
-            // Indicate whether direct media upload is enabled. A value of
-            // "True" indicates that direct media upload is enabled and that
-            // the entire media content will be uploaded in a single request.
-            // A value of "False," which is the default, indicates that the
-            // request will use the resumable media upload protocol, which
-            // supports the ability to resume an upload operation after a
-            // network interruption or other transmission failure, saving
-            // time and bandwidth in the event of network failures.
+
             uploader.setDirectUploadEnabled(false);
+
+            System.out.println("Preparing for launch");
 
             MediaHttpUploaderProgressListener progressListener = new MediaHttpUploaderProgressListener() {
                 public void progressChanged(MediaHttpUploader uploader) throws IOException {
@@ -119,10 +99,10 @@ public class Upload {
             };
             uploader.setProgressListener(progressListener);
 
-            // Call the API and upload the video.
+            System.out.println("launch");
             Video returnedVideo = videoInsert.execute();
 
-            // Print data about the newly inserted video from the API response.
+
             System.out.println("\n================== Returned Video ==================\n");
             System.out.println("  - Id: " + returnedVideo.getId());
             System.out.println("  - Title: " + returnedVideo.getSnippet().getTitle());
