@@ -8,8 +8,8 @@
 
 [] Add a Class For Files\
 [] Frontend Pages\
-&emsp[] Home Page\
-\t[] Login Page\
+&emsp; [] Home Page\
+&emsp; [] Login Page\
 [] Get Youtube Credentials\
 [] Connect to Youtube\
 [] Setup Flow from upload to youtube\
