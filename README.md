@@ -8,8 +8,8 @@
 
 [] Add a Class For Files\
 [] Frontend Pages\
-    [] Home Page\
-    [] Login Page\
+\t[] Home Page\
+\t[] Login Page\
 [] Get Youtube Credentials\
 [] Connect to Youtube\
 [] Setup Flow from upload to youtube\
