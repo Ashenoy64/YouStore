@@ -16,4 +16,4 @@
 [] Setup Flow from youtube to user\
 [] Get and display the files\
 [] Login \
-[] Register\
+[] Register
