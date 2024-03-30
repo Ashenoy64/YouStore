@@ -1,17 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
-    <title>Getting Started: Serving Web Content</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
+
+<head th:replace="fragments/head :: headTag(title='YouStore')"></head>
+
 <body>
     <div th:replace="fragments/navbar ::navbar"></div>
     <div class="container mx-auto">
         <h1 class="text-4xl font-bold text-center my-8">Download</h1>
-        <div class="flex justify-center">
-            <!-- <a th:href="@{/files/download/} + ${file}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download</a> -->
+        <div class="flex flex-row items-center justify-center">
+            <div class="flex flex-col gap-4 w-full max-w-md">
+                <div th:replace="/fragments/file::file(name='Textbook',url='#')" />
+                <div th:replace="/fragments/file::file(name='Textbook',url='#')" />
+                <div th:replace="/fragments/file::file(name='Textbook',url='#')" />
+                <div th:replace="/fragments/file::file(name='Textbook',url='#')" />
+                <div th:replace="/fragments/file::file(name='Textbook',url='#')" />
+                <div th:replace="/fragments/file::file(name='Textbook',url='#')" />
+                <div th:replace="/fragments/file::file(name='Textbook',url='#')" />
+                <div th:replace="/fragments/file::file(name='Textbook',url='#')" />
+            </div>
         </div>
     </div>
 </body>
