@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UIController {
-    @GetMapping("/greeting")
+    @GetMapping("/")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("name", name);
-        return "greetings";
+        return "home";
     }
 
     @GetMapping("/login")
@@ -30,11 +30,6 @@ public class UIController {
     @GetMapping("/download")
     public String download() {
         return "download";
-    }
-
-    @GetMapping("/list")
-    public String list() {
-        return "list";
     }
 
 }
