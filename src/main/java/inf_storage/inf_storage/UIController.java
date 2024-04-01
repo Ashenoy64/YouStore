@@ -4,6 +4,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+import inf_storage.inf_storage.Youtube.YoutubeController;
+
+import java.util.*;
 @Controller
 public class UIController {
     @GetMapping("/")
@@ -28,7 +32,13 @@ public class UIController {
     }
 
     @GetMapping("/download")
-    public String download() {
+    public String download(Model model) {
+        List<List<String>> files = YoutubeController.listVideos();
+        
+        model.addAttribute("files", files);
+        for(List<String> file: files) {
+            System.out.println(file.get(0));
+        }
         return "download";
     }
 
