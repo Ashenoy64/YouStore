@@ -23,16 +23,59 @@
 		<project.oauth.version>1.20.0</project.oauth.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	 <repositories>
+        <repository>
+            <id>xuggle repo</id>
+            <url>https://files.liferay.com/mirrors/xuggle.googlecode.com/svn/trunk/repo/share/java/</url>
+        </repository>
+    </repositories>
 	<dependencies>
+
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time</artifactId>
+				<version>2.9.2</version>
+		</dependency>
+
+		<dependency>
+				<groupId>xuggle</groupId>
+				<artifactId>xuggle-xuggler</artifactId>
+				<version>5.4</version>
+		</dependency>
+		
+		<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.32</version> <!-- Use the latest version available -->
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.7</version> <!-- Use the latest version available -->
+		</dependency>
+
+		<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>javacv</artifactId>
+				<version>1.5.10</version>
+		</dependency>
+		
+		<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>javacv-platform</artifactId>
+				<version>1.5.10</version>
+		</dependency>
+
+		<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 		
 		<dependency>
@@ -59,37 +102,50 @@
 			<artifactId>google-api-services-youtube</artifactId>
 			<version>${project.youtube.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.apis</groupId>
 			<artifactId>google-api-services-youtubeAnalytics</artifactId>
 			<version>${project.youtube.analytics.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.apis</groupId>
 			<artifactId>google-api-services-youtubereporting</artifactId>
 			<version>${project.youtube.reporting.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.4</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.http-client</groupId>
 			<artifactId>google-http-client-jackson2</artifactId>
 			<version>${project.http.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.oauth-client</groupId>
 			<artifactId>google-oauth-client-jetty</artifactId>
 			<version>${project.oauth.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.collections</groupId>
 			<artifactId>google-collections</artifactId>
 			<version>1.0</version>
 		</dependency>
-	</dependencies>
+
+	
+   <dependency>
+     <groupId>org.scala-tools.testing</groupId>
+     <artifactId>specs_2.10</artifactId>
+     <version>1.6.9</version>
+   </dependency>
+ </dependencies>
 
 	<build>
 		<plugins>
