@@ -28,9 +28,17 @@
             <id>xuggle repo</id>
             <url>https://files.liferay.com/mirrors/xuggle.googlecode.com/svn/trunk/repo/share/java/</url>
         </repository>
+  		<repository>
+    		<id>jitpack.io</id>
+    		<url>https://jitpack.io</url>
+  		</repository>
     </repositories>
 	<dependencies>
-
+		<dependency>
+		<groupId>com.github.sealedtx</groupId>
+		<artifactId>java-youtube-downloader</artifactId>
+		<version>3.2.3</version>
+		</dependency>
 		<dependency>
 				<groupId>joda-time</groupId>
 				<artifactId>joda-time</artifactId>
@@ -49,6 +57,7 @@
 				<!-- Use the latest version available -->
 		</dependency>
 
+	
 
 
 		<dependency>

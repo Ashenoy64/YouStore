@@ -74,7 +74,9 @@ public class APIController {
 
     // Handler for download the video, filename is the name
     @GetMapping("/api/download")
-    public Response Download(@RequestParam String filename) {
+    public Response Download(@RequestParam String fileId) {
+        System.out.println("Downloading file " + fileId);
+        Download(fileId);
         return new Response(200);
     }
 
