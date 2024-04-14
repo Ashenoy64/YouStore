@@ -15,10 +15,25 @@ import java.util.concurrent.TimeUnit;
 
 public class Encoder {
 
-    public static void Encode(File file) {
+    public static String Encode(File file) {
         String binString = fileToBinary(file);
         List<BufferedImage> frames = binaryToFrames(binString, 1280, 720, 4, 24,1);
-        framesToVideo(frames,"resources/output.mp4",1280 ,720, 24);
+
+        String outputFileName = file.getName() + ".mp4";
+        String outputFilePath = "src/main/resources/static/" + outputFileName;
+        File outputFile = new File(outputFilePath);
+        try {
+            if (outputFile.createNewFile()) {
+                System.out.println("File created: " + outputFile.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating the file.");
+            e.printStackTrace();
+        }
+        framesToVideo(frames, outputFilePath, 1280, 720, 24);
+        return outputFileName;
     }
 
     private static String fileToBinary(File inputFile) {

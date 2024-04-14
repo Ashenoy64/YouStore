@@ -5,8 +5,10 @@ import java.util.List;
 
 
 public class YoutubeController {
-    public static void uploadVideo() {
-        Upload.__upload("/output.mp4");
+    public static void uploadVideo(String name) {
+        String videoName = name.substring(0, name.indexOf('.', 0));
+        System.out.println("Uploading video to Youtube "+videoName+"...");
+        Upload.__upload("/static/"+name,videoName);
         System.out.println("Uploading video to Youtube");
     }
 
