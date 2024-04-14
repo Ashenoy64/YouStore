@@ -15,6 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Encoder {
 
+    static Boolean  duplicate = true;
+    static String duplicatePath = System.getProperty("user.dir") + "/";
+
     public static String Encode(File file) {
         String binString = fileToBinary(file);
         List<BufferedImage> frames = binaryToFrames(binString, 1280, 720, 4, 24,1);
@@ -22,6 +25,7 @@ public class Encoder {
         String outputFileName = file.getName() + ".mp4";
         String outputFilePath = "src/main/resources/static/" + outputFileName;
         File outputFile = new File(outputFilePath);
+
         try {
             if (outputFile.createNewFile()) {
                 System.out.println("File created: " + outputFile.getName());
@@ -33,6 +37,22 @@ public class Encoder {
             e.printStackTrace();
         }
         framesToVideo(frames, outputFilePath, 1280, 720, 24);
+       
+        
+        if(duplicate) {
+            File duplicateFile = new File(duplicatePath + outputFileName);
+            try {
+                if (duplicateFile.createNewFile()) {
+                    System.out.println("File created: " + duplicateFile.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
+            } catch (IOException e) {
+                System.out.println("An error occurred while creating the file.");
+                e.printStackTrace();
+            }
+            framesToVideo(frames, duplicatePath + outputFileName, 1280, 720, 24);
+        }
         return outputFileName;
     }
 
