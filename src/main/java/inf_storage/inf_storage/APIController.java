@@ -10,6 +10,7 @@ import inf_storage.inf_storage.Model.*;
 import inf_storage.inf_storage.Youtube.YoutubeController;
 import java.io.File;
 
+
 import inf_storage.inf_storage.Utils.*;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -73,10 +74,11 @@ public class APIController {
     }
 
     // Handler for download the video, filename is the name
-    @GetMapping("/api/download")
-    public Response Download(@RequestParam String fileId) {
-        System.out.println("Downloading file " + fileId);
-        Download(fileId);
+    @PostMapping("/api/download")
+    public Response Download(@RequestBody String fileId) {
+        
+        System.out.println("Downloading file: " + fileId);
+        YoutubeController.downloadVideo(fileId);
         return new Response(200);
     }
 

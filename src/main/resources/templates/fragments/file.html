@@ -3,8 +3,9 @@
         <span th:text="${file[0]}" class="font-semibold text-md" />
     </div>
     <div>
-        <div>
-            <a th:href="@{'/api/download?fileId='+${file[1]}}" class="p-2 bg-blue-500 rounded font-semibold hover:bg-blue-600">Download</a>
-        </div>
+        <button class="p-2 bg-blue-500 rounded font-semibold hover:bg-blue-600"  th:attr="onclick=|download('${file[1]}')|" >
+            Download
+        </button>
     </div>
+   
 </div>

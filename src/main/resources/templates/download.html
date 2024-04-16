@@ -11,5 +11,24 @@
             </div>
         </div>
     </div>
+    <script>
+        function download(fileID) {
+            $.ajax({
+                url: '/api/download' ,
+                type: 'POST',
+                data: {
+                    fileID: fileID
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+
+            console.log(fileID);
+        }
+    </script>
 
 </body>

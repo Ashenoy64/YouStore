@@ -16,4 +16,9 @@ public class YoutubeController {
         System.out.println("Listing videos from Youtube");
         return ListFiles.__listFiles();
     }
+
+    public static void downloadVideo(String id) {
+        System.out.println("Downloading video from Youtube");
+        Download.__download(id);
+    }
 }
