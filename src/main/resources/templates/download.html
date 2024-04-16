@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/head :: headTag(title='YouStore')"></head>
+
 <body class="h-screen no-scrollbar">
     <div th:replace="fragments/navbar ::navbar"></div>
     <div class="container mx-auto ">
@@ -14,20 +16,36 @@
     <script>
         function download(fileID) {
             $.ajax({
-                url: '/api/download' ,
+                url: '/api/download',
                 type: 'POST',
                 data: {
                     fileID: fileID
                 },
                 success: function (data) {
-                    console.log(data);
+                    if (data.data) {
+
+                        console.log("Data recived")
+                        var bytes = new Uint8Array(atob(data.data).split("").map(function (c) {
+                            return c.charCodeAt(0);
+                        }));
+                        // Create a Blob from the Uint8Array
+                        var blob = new Blob([bytes], { type: "application/octet-stream" });
+                        // Create a download link and trigger the download
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(blob);
+                        link.download = data.fileName;
+                        link.click();
+                        console.log("Downloaded")
+
+                    }
+
+
                 },
                 error: function (error) {
                     console.log(error);
                 }
             });
 
-            console.log(fileID);
         }
     </script>
 

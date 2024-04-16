@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 import inf_storage.inf_storage.Model.*;
 import inf_storage.inf_storage.Youtube.YoutubeController;
 import java.io.File;
-
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 import inf_storage.inf_storage.Utils.*;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.apache.commons.io.IOUtils;
 
 @RestController
 public class APIController {
@@ -53,7 +55,7 @@ public class APIController {
         try {
             File output_file = new File(output_path);
             System.out.println(output_path);
-            if (status == 200 && output_file.exists()) 
+            if (status == 200 && output_file.exists())
                 YoutubeController.uploadVideo(outputFileName);
         } catch (Exception e) {
             System.out.println("Error uploading to youtube");
@@ -76,10 +78,36 @@ public class APIController {
     // Handler for download the video, filename is the name
     @PostMapping("/api/download")
     public Response Download(@RequestBody String fileId) {
-        
+
+        Response response = new Response(200);
+
         System.out.println("Downloading file: " + fileId);
-        YoutubeController.downloadVideo(fileId);
-        return new Response(200);
+        String fileName =  YoutubeController.downloadVideo(fileId);
+        String filePath = "temp/" + fileName;
+        File file = new File(filePath);
+        if (file.exists()) {
+            fileName=fileName.substring(0, fileName.lastIndexOf('.'));
+            Decoder.Decode(fileName);
+            try {
+                InputStream in = new FileInputStream("Downloads/"+fileName);
+                byte[] data = IOUtils.toByteArray(in);
+                response.setData(data);
+                in.close();
+                response.setStatus(200);
+                response.setFileName(fileName);
+                response.setMessage("Downloaded file successfully");
+                return response;
+            } catch (Exception e) {
+                System.out.println("Error reading file");
+                response.setStatus(400);
+                return response;
+            }
+        } else {
+
+            response.setMessage("File not found");
+            response.setStatus(400);
+            return response;
+        }
     }
 
     // Handler for list all the videos, put some params that will be required to

@@ -13,7 +13,7 @@ public class Download {
     //     List<VideoFormat> videoFormats = video.videoFormats();
     //     return videoFormats;
     // }
-    private static String path = "src/main/resources/static/";
+    private static String path = "temp/";
 
     public static void __download(String id) {
         

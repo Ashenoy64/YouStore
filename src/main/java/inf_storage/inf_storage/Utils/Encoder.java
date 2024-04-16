@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class Encoder {
 
     static Boolean  duplicate = true;
-    static String duplicatePath = System.getProperty("user.dir") + "/";
+    static String duplicatePath = System.getProperty("user.dir") + "/Upload/";
 
     public static String Encode(File file) {
         String binString = fileToBinary(file);
