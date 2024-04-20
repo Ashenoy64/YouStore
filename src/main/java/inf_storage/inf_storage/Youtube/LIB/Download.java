@@ -15,12 +15,13 @@ public class Download {
     // }
     private static String path = "temp/";
 
-    public static void __download(String id) {
+    public static String __download(String id) {
         
         try {
             String url = "https://www.youtube.com/watch?v="+id;
             VGet v = new VGet(new URL(url), new File(path));
-            v.download();
+            // v.download();
+            return new String("Sherlock.txt.mp4");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

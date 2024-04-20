@@ -19,7 +19,8 @@ public class YoutubeController {
 
     public static String downloadVideo(String id) {
         System.out.println("Downloading video from Youtube");
-        // Download.__download(id);
-        return  new String("Sherlock.txt.mp4");
+        String name = Download.__download(id);
+        System.out.println();
+        return  name;
     }
 }
